@@ -1,9 +1,27 @@
+Türk Halk Masalları
+
 Proje Hakkında
-Bu proje, Türk halk anlatı geleneğinden seçilen sekiz masalı bir araya getiren bir web sitesidir. Sitede her masalın illüstrasyonu, kısa özeti ve tam metni bulunmaktadır. Kullanıcılar masalları inceleyebilir, okumak istedikleri masalı seçebilir ve masallar arasında geçiş yapabilir. Ayrıca okuma sayfasında yazı boyutunu büyütme, küçültme ve varsayılan boyuta döndürme özellikleri bulunmaktadır. Web sitesi HTML, CSS ve JavaScript kullanılarak hazırlanmıştır. CSS ve JavaScript kodları tek bir HTML dosyasında yer almaktadır. Tasarım, bilgisayar ve telefon ekranlarına uyumlu olacak şekilde düzenlenmiştir.
 
-Nasıl Açılır?
-1. Proje dosyaları GitHub üzerinden indirilir.
-2. `index.html` dosyası bir web tarayıcısında açılır.
-3. Görsellerin görüntülenebilmesi için `GÖRSELLER` klasörü, `index.html` dosyasıyla aynı konumda bulunmalıdır.
+Bu proje, Türk halk anlatı geleneğinden seçilen sekiz masalı bir araya getiren bir web sitesidir. Kullanıcılar ana sayfadan masalları inceleyebilir, istedikleri masalı seçerek tam metnini okuyabilirler.
 
-Web sitesi internet bağlantısı olmadan çalışmaktadır.
+Web sitesinde masallara ait illüstrasyonlar, kısa özetler ve tema bilgileri bulunmaktadır. Ayrıca masallar arasında geçiş yapma ve okuma sırasında yazı boyutunu değiştirme özellikleri eklenmiştir.
+
+Kullanılan Teknolojiler
+
+HTML: Sayfanın içerik ve yapısını oluşturmak için kullanılmıştır.
+
+CSS: Renkler, yazı tipleri, sayfa düzeni ve mobil uyumluluk için kullanılmıştır.
+
+JavaScript: Masal seçimi, masallar arasında geçiş ve yazı boyutu ayarları için kullanılmıştır.
+
+Sayfa Nasıl Açılır?
+
+Proje dosyalarını bilgisayarınıza indirin.
+
+HTML dosyasını bulun.
+
+Dosyaya çift tıklayarak Chrome, Edge veya başka bir web tarayıcısında açın.
+
+Web sitesi tek bir HTML dosyası olarak hazırlanmıştır. İnternet bağlantısı olmadan da çalışmaktadır.
+
+YouTube sunum videosu: https://youtu.be/DT1dADmtXfw
