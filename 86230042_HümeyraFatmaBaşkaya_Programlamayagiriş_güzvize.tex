@@ -1,0 +1,428 @@
+% ====================================================================
+% VİZE RAPOR ŞABLONU – Türk Masalları Derlemesi Web Sayfası
+% --------------------------------------------------------------------
+% DERLEME: Overleaf'te Menu > Compiler > XeLaTeX (pdfLaTeX de çalışır).
+%
+% KURALLAR (şablonu kullanmadan önce okuyun):
+%  1. Bölüm başlıklarını SİLMEYİN ve sırasını DEĞİŞTİRMEYİN.
+%  2. [KÖŞELİ PARANTEZ] içindeki ve gri renkli açıklama metinlerini
+%     kendi bilgilerinizle değiştirin; açıklama metinlerini silin.
+%  3. MEBİS'e YALNIZCA bu raporun PDF'ini yükleyin.
+%     ZIP ve HTML dosyası YÜKLEMEYİN. Tüm kontroller GitHub'dan yapılır.
+%  4. Kapaktaki GitHub ve YouTube bağlantıları doğru ve tıklanabilir
+%     olmalıdır. Teslimden önce PDF'teki bağlantılara tıklayıp deneyin.
+%  5. Haftalık katkı tablosundaki görseller için resim dosyalarını
+%     (hafta1.png, hafta2.png, ...) Overleaf projesine yükleyin.
+%     Dosya adlarında boşluk ve Türkçe karakter kullanmayın.
+%     Resim yoksa tabloda "görsel ekleyin" kutusu görünür.
+%  6. Yapay zekâ kullandıysanız Bölüm 5'i doldurun.
+% ====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else
+  \usepackage{fontspec}
+\fi
+\usepackage[turkish]{babel}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist{itemsep=2pt, topsep=4pt}
+\hypersetup{colorlinks=true, linkcolor=blue!50!black, urlcolor=blue!50!black}
+
+\definecolor{ana}{HTML}{14325C}
+\definecolor{acik}{HTML}{EEF2F8}
+
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{acik},
+  frame=single, rulecolor=\color{ana}, breaklines=true,
+  columns=fullflexible, keepspaces=true, showstringspaces=false}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Türk Masalları Derlemesi Web Sayfası}
+\fancyhead[R]{Vize Raporu}
+\fancyfoot[C]{\thepage}
+
+% ---------- Yardımcı komutlar ----------
+% Gri açıklama metni (silinecek yönergeler için)
+\newcommand{\aciklama}[1]{{\color{gray}\itshape (#1)}}
+
+% Haftalık tablo görseli: dosya yoksa "görsel ekleyin" kutusu çıkar
+\newcommand{\haftagorsel}[1]{%
+  \IfFileExists{#1}{%
+    \includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{#1}%
+  }{%
+    \fbox{\parbox[c][2.6cm][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+      \centering\small\color{gray} Ekran görüntüsü / görsel ekleyin\\ \texttt{#1}}}%
+  }%
+}
+% Haftalık katılım kutuları (işaretlemek için $\square$ yerine $\boxtimes$ yazın)
+\newcommand{\katilimkutulari}{\par\vspace{3pt}\small $\square$ Ders içinde katılım sergiledim\par \boxtimes$ Telafi yaptım}
+
+% Ek görsel: dosya yoksa hiçbir şey göstermez
+\newcommand{\haftaek}[1]{%
+  \IfFileExists{#1}{\\[4pt]\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{#1}}{}%
+}
+
+% ---------- Kapak bilgileri ----------
+\newcommand{\universite}{MEDİPOL ÜNİVERSİTESİ / GÖRSEL İLETİŞİM TASARIMI}
+\newcommand{\dersadi}{PROGRAMLAMAYA GİRİŞ}
+\newcommand{\hocaadi}{MERAL ŞENTÜRK}
+\newcommand{\ogrenciadi}{HÜMEYRA FATMA BAŞKAYA}
+\newcommand{\ogrencino}{86230042}
+\newcommand{\projeadi}{Türk Masalları Derlemesi Web Sayfası}
+% Bağlantıları tam adres olarak yazın (https:// ile başlayarak)
+\newcommand{\githublink}{\url{https://github.com/humeyrafatmabaskaya/Turk-Masallar-Derlemes-Web-Sayfas--Humeyra-Fatma-Baskaya}}
+\newcommand{\youtubelink}{\url{https://youtu.be/DT1dADmtXfw}}
+
+\begin{document}
+
+% ====================================================================
+% KAPAK
+% ====================================================================
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+{\large \universite \par}
+\vspace{1.8cm}
+{\Huge\bfseries\color{ana} \projeadi \par}
+\vspace{0.4cm}
+{\Large Türk Masalları Derlemesi Web Sayfası \par}
+{\large Vize Raporu \par}
+\vspace{1.8cm}
+{\large \textbf{Ders:} \dersadi \par}
+{\large \textbf{Öğretim Üyesi:} \hocaadi \par}
+\vspace{1.2cm}
+{\large \textbf{Hazırlayan:} \ogrenciadi \par}
+{\large \textbf{Öğrenci No:} \ogrencino \par}
+\vspace{1.8cm}
+\fbox{\parbox{0.88\linewidth}{\centering\vspace{6pt}
+{\large\bfseries Proje Bağlantıları}\\[8pt]
+\textbf{GitHub deposu:}\\ \githublink \\[8pt]
+\textbf{YouTube sunum videosu:}\\ \youtubelink
+\vspace{6pt}}}
+\vfill
+{\large \today \par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Giriş}
+% ====================================================================
+
+
+\subsection{Proje Özeti}
+Bu projede, Türk halk anlatı geleneğinden seçilen sekiz masalı bir araya getiren, kullanıcıların masalları kolayca inceleyip okuyabileceği bir web sitesi tasarlanmıştır. Projenin amacı, geleneksel Türk masallarını dijital ortamda sunmak ve masal kitaplarının atmosferini renkler, illüstrasyonlar ve sade bir sayfa düzeniyle yansıtmaktır. Ödevde istenen 8–12 masal koşulu, farklı konulara sahip sekiz masalın seçilmesiyle karşılanmış ve web sitesi tek bir HTML dosyası olarak hazırlanmıştır. CSS kodları `<style>` etiketi içerisinde kullanılarak görsel tasarım ve mobil uyumluluk sağlanmış, JavaScript kodları ise `<script>` etiketi içerisinde kullanılarak masal seçimi, masallar arasında geçiş ve yazı boyutunu değiştirme gibi özellikler eklenmiştir.Ayrıca kullanıcıların masalları rahatça okuyabilmesi ve site içerisinde kolayca gezinebilmesi için anlaşılır ve işlevsel bir kullanım deneyimi oluşturulmasına dikkat edilmiştir.
+
+\subsection{Gereksinimlerin Karşılanması}
+\begin{center}
+\rowcolors{2}{acik}{white}
+\begin{tabular}{@{}p{8.2cm}c@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Gereksinim}} & \textcolor{white}{\textbf{Durum}} \\
+\midrule
+Masal sayısı 8--12 arasında (8 masal)         & $\boxtimes$  \\
+Tek HTML dosyası                                    & $\boxtimes$  \\
+Stil kodları içsel (\texttt{<style>} içinde)        & $\boxtimes$ \\
+Betik kodları içsel (\texttt{<script>} içinde)      & $\boxtimes$  \\
+İnternetsiz açılıp çalışıyor                        & $\boxtimes$  \\
+JavaScript sayfada anlamlı bir işlev görüyor        & $\boxtimes$  \\
+Sayfa telefonda da düzgün görünüyor                 & $\boxtimes$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ====================================================================
+\section{Masalların Seçimi}
+% ====================================================================
+
+\begin{longtable}{@{}cp{4cm}p{3cm}p{5.4cm}@{}}
+\toprule
+\textbf{No} & \textbf{Masal} & \textbf{Tür} & \textbf{Seçilme nedeni} \\
+\midrule
+\endhead
+1 & Keloğlan ve Altın Bülbül & Olağanüstü masal & Keloğlan gibi tanınan bir halk masalı karakterini içermesi ve cesaret ile mücadele temalarını işlemesi. \\
+2 & Korkak Adam ve Devler & Olağanüstü masal & Dev karakterleriyle olağanüstü unsurlar içermesi ve zekânın fiziksel güç karşısındaki önemini göstermesi. \\
+3 & Dört Öğüt & 	Öğüt verici masal & Sabır, doğru karar verme ve öğütlerin önemini ele alması. \\
+4 & Kurnaz Kurt& Hayvan masalı & Hayvan karakterler üzerinden kurnazlık ve mücadele konularını anlatması. \\
+5 & Öksüz Kız & 	Olağanüstü masal & İyilik, kötülük ve adalet temalarını işlemesi. \\
+6 & Hüsnü Yusuf & Olağanüstü masal & Sevgi, merak ve olağanüstü olayları içeren bir anlatıya sahip olması. \\
+7 & İncili Çadır & Olağanüstü masal & Sevgi ve kavuşma temalarını işlemesi, farklı karakter ve olaylara yer vermesi. \\
+8 & Kırk Dost Masalı& Gerçekçi masal & Dostluk, güven ve çıkar ilişkilerini ele alarak insan ilişkilerine yönelik bir mesaj vermesi. \\
+
+\bottomrule
+\end{longtable}
+
+% ====================================================================
+\section{Tasarım Kararları}
+% ====================================================================
+
+\subsection{Konuya Uygunluk}
+Renk: Web sitesinde krem, kahverengi, koyu kırmızı ve yeşil tonları tercih edilmiştir. Krem ve kahverengi tonları, eski masal kitaplarının sayfalarını ve geleneksel kitap atmosferini çağrıştırmak amacıyla kullanılmıştır. Koyu kırmızı ve yeşil ise tasarıma renk çeşitliliği katmak, başlıkları ve önemli bilgileri belirginleştirmek için tercih edilmiştir.
+
+Yazı Tipi: Masal kitabı görünümünü desteklemek amacıyla başlıklarda ve masal metinlerinde Georgia yazı tipi kullanılmıştır. Georgia'nın tırnaklı yapısı, geleneksel basılı kitaplarla görsel bir bağlantı kurarken uzun metinlerin okunmasını da kolaylaştırmaktadır. Menü ve butonlarda ise daha sade bir görünüm sağlamak için Arial yazı tipi tercih edilmiştir.
+
+Görseller: Her masal için hikâyenin karakterlerini ve olaylarını yansıtan ayrı illüstrasyonlar hazırlanmıştır. Görsellerde geleneksel masal kitabı illüstrasyonlarından ilham alınarak el çizimi hissi veren çizgiler, mat renkler ve sadeleştirilmiş biçimler kullanılmıştır. Böylece masalların içeriklerinin görsel olarak desteklenmesi ve web sitesinde bütünlüklü bir masal kitabı atmosferi oluşturulması amaçlanmıştır.
+
+\subsection{Renk Paleti ve Yazı Tipi}
+\begin{center}
+\rowcolors{2}{acik}{white}
+\begin{tabular}{@{}llp{6.4cm}@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Ad}} & \textcolor{white}{\textbf{Kod}} & \textcolor{white}{\textbf{Nerede / neden kullandınız?}} \\
+\midrule
+\relax Krem & \texttt{#F7F0E6} & Ana sayfa arka planında; eski masal kitabı sayfalarını çağrıştırmak ve rahat bir okuma ortamı oluşturmak için \\
+\relax Koyu Kahverengi & \texttt{#2C2521} & Gövde metinlerinde; krem zemin üzerinde okunabilirlik sağlamak için. \\
+\relax Koyu Kırmızı & \texttt{#7A302B} & Başlıklarda ve ana butonlarda; geleneksel kitap atmosferini desteklemek ve önemli alanları vurgulamak için. \\
+\relax Koyu Yeşil& \texttt{#31544C} & Yardımcı metinlerde; renk dengesi ve görsel ayrım sağlamak için.\\
+\relax Oker & \texttt{#B58B4B} & Palete sıcaklık katmak amacıyla tanımlanan yardımcı renk. \\
+\relax Açık Bej & \texttt{#EEE5D8} & İllüstrasyonların arka planında ve bazı etkileşim alanlarında; görselleri ana zeminden ayırmak için. \\
+\relax Açık Kahverengi & \texttt{#D7C9B9} & Bölüm ayırıcı çizgilerde ve kenarlıklarda; içerikleri sade biçimde birbirinden ayırmak için. \\
+\relax Georgia & -- & Başlıklarda, masal metinlerinde ve masal dizininde; geleneksel basılı kitap görünümünü desteklemek ve okunabilirlik sağlamak için. \\
+\relax Arial& -- & Menüde, butonlarda ve bazı yardımcı metinlerde; sade ve anlaşılır bir görünüm oluşturmak için. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Okunabilirlik, Gezinme ve Duyarlı Tasarım}
+\begin{itemize}
+  \item \textbf{Okunabilirlik:}  Masal metinlerinde 20 piksel başlangıç yazı boyutu kullanılmış ve kullanıcıların yazı boyutunu 16–28 piksel arasında değiştirebilmesi sağlanmıştır. Metinlerin satır uzunlukları sınırlandırılarak uzun masalların daha rahat okunması amaçlanmıştır. Krem zemin üzerinde koyu kahverengi yazı kullanılarak metin ve arka plan arasında belirgin bir karşıtlık oluşturulmuştur.
+  \item \textbf{Gezinme:} Kullanıcılar ana sayfadaki masal dizininden veya masal kartlarından istedikleri masala ulaşabilmektedir. Her masal kartında bulunan “Masalı Oku” butonuyla masalın tam metni açılmaktadır. Okuma sayfasındaki “Önceki Masal”, “Sonraki Masal” ve “Masallara Dön” bağlantılarıyla sayfalar arasında kolayca geçiş yapılabilmektedir.
+  \item \textbf{Duyarlı tasarım:} Web sitesi bilgisayar, tablet ve telefon ekranlarına uyum sağlayacak şekilde tasarlanmıştır. Bilgisayarda yan yana yerleştirilen görseller ve metinler, ekran genişliği azaldığında alt alta sıralanmaktadır. Böylece içeriklerin küçük ekranlarda da rahatça görüntülenmesi ve kullanılması amaçlanmıştır.
+  \item \textbf{Tutarlılık:} Web sitesinin bütün bölümlerinde aynı renk paleti, yazı tipleri ve buton tasarımları kullanılmıştır. Başlıklarda koyu kırmızı, ana metinlerde koyu kahverengi tercih edilerek görsel bir hiyerarşi oluşturulmuştur. Bölümler arasındaki boşluklar, görsellerin yuvarlatılmış köşeleri ve benzer kart düzenleriyle sayfa genelinde bütünlük sağlanmıştır.
+\end{itemize}
+
+\subsection{Ekran Görüntüleri}
+ \begin{figure}[h]
+   \centering
+%   \includegraphics[width=0.9\textwidth]{ekran-masaustu1.png}
+   \caption{Sayfanın bilgisayar görünümü}
+ \end{figure}
+ \begin{figure}[h]
+   \centering
+%   \includegraphics[width=0.35\textwidth]{ekran-mobil.jpg}
+   \caption{Sayfanın telefon görünümü}
+  \end{figure}
+
+
+% ====================================================================
+\section{Gerçekleştirme}
+% ====================================================================
+
+\subsection{HTML Yapısı}
+Web sitesinin HTML yapısını giriş bölümü, masal dizini, masal kartları, okuma alanı ve alt bilgi bölümü olarak düzenledim. Sayfanın üst kısmında web sitesinin başlığı ve kısa tanıtım metni yer almaktadır. Masal dizininde sekiz masalın isimleri listelenirken masal kartlarında her masalın görseli, başlığı, kısa özeti ve “Masalı Oku” butonu bulunmaktadır. Kullanıcı bir masal seçtiğinde okuma alanında masalın tam metni açılmaktadır. Bu alanda ayrıca önceki ve sonraki masala geçiş yapmayı sağlayan butonlar bulunmaktadır. HTML kodlarında sayfanın bölümlerini oluşturmak için `<header>`, `<main>`, `<section>` ve `<footer>`; başlıklar ve metinler için `<h1>`, `<h2>` ve `<p>`; görseller ve butonlar için ise `<img>` ve `<button>` etiketlerinden yararlandım.
+
+\subsection{İçsel CSS}
+Web sitesinin görsel tasarımını HTML dosyasının <style> bölümü içerisinde yer alan CSS kodlarıyla oluşturdum. Renkleri kolayca değiştirebilmek için :root içerisinde CSS değişkenleri kullandım. Arka planda krem, metinlerde koyu kahverengi ve başlıklarda koyu kırmızı renklerini tercih ettim. Masal kartlarının ve görsellerin yerleşiminde Grid ve Flex düzenlerinden yararlandım. Ayrıca @media kurallarını kullanarak web sitesinin farklı ekran boyutlarına uyum sağlamasını amaçladım. Böylece bilgisayarda yan yana görünen içeriklerin telefon ekranında alt alta sıralanmasını sağladım.
+Aşağıdaki kod örneği, web sitesinde kullanılan temel renkleri, arka plan rengini, metin rengini ve yazı tipini göstermektedir.
+
+\begin{lstlisting}[caption={İçsel CSS'ten önemli bir bölüm}]
+:root {
+  --krem: #F7F0E6;
+  --kahverengi: #2C2521;
+  --kirmizi: #7A302B;
+  --yesil: #31544C;
+  --okuma-boyutu: 20px;
+}
+
+body {
+  background: var(--krem);
+  color: var(--kahverengi);
+  font: 18px/1.7 Georgia, "Times New Roman", serif;
+}
+
+h1, h2, h3 {
+  color: var(--kirmizi);
+}
+\end{lstlisting}
+
+\subsection{İçsel JavaScript}
+Web sitesinin etkileşimli özelliklerini HTML dosyasının <script> bölümü içerisinde yer alan JavaScript kodlarıyla oluşturdum. Sekiz masalın başlık, tema, özet ve tam metin bilgilerini masallar adlı bir dizi içerisinde tuttum. forEach kullanarak bu dizideki masalların kartlarını oluşturdum. masaliAc() fonksiyonu, kullanıcı “Masalı Oku” butonuna tıkladığında seçilen masalın tam metnini açmaktadır. Ayrıca önceki ve sonraki masala geçiş yapma ve yazı boyutunu değiştirme özellikleri için JavaScript kullandım. Butonlara tıklama olayları ve hashchange olayı aracılığıyla kullanıcı işlemlerine göre sayfanın güncellenmesini sağladım. Aşağıdaki kodda ilk bölümde forEach ile masallar dizisindeki her masal için bir kart oluşturulmaktadır. İkinci bölümde ise masaliAc() fonksiyonu seçilen masalın bilgilerini alarak ana sayfayı gizlemekte ve okuma alanını görüntülemektedir.
+
+\begin{lstlisting}[caption={İçsel JavaScript'ten önemli bir bölüm}]
+masallar.forEach(masal => {
+  const kart = ogeOlustur("article", "masal-karti");
+  kart.id = masal.id;
+});
+
+function masaliAc(sira) {
+  seciliMasal = sira;
+  const masal = masallar[sira];
+
+  anaSayfa.hidden = true;
+  okumaAlani.hidden = false;
+
+  okumaBasligi.textContent = masal.baslik;
+  okumaTemasi.textContent = masal.tema;
+}
+\end{lstlisting}
+
+\subsection{Sayfanın Özellikleri}
+
+
+% ====================================================================
+\section{Yapay Zekâ Kullanımı}
+% ====================================================================
+
+\begin{longtable}{@{}p{2.6cm}p{3.6cm}p{4.2cm}p{3.4cm}@{}}
+\toprule
+\textbf{Araç} & \textbf{Ne için kullandınız?} & \textbf{İstem (prompt) özeti} & \textbf{Sayfada nerede?} \\
+\midrule
+\endhead
+\relax ChatGPT & İllüstrasyon hazırlama sürecinde destek almak için. & “Türk halk masallarını temsil eden, geleneksel masal kitabı atmosferinde ve ortak çizim diline sahip illüstrasyonlar oluştur.” & Giriş ve masal illüstrasyonları. \\
+\relax ChatGPT  & Görselleri tek HTML dosyasına ekleme yöntemini öğrenmek için & “Görselleri Base64 biçimine nasıl dönüştürebilirim ve HTML dosyasına nasıl ekleyebilirim?” & Giriş ve masal görselleri \\
+\relax ChatGPT  & Metinlerin ve görsellerin yerleşimini düzenlerken yardım almak için. & “Masal kartlarındaki metinlerle görselleri nasıl hizalayabilirim? Aralarındaki boşlukları hangi kodlarla değiştirebilirim?” & Ana sayfa ve masal kartları. \\
+\relax ChatGPT  & JavaScript hatalarını çözmek için& “Masalı Oku butonuna tıkladığımda ilgili masalın açılması için kodumda hangi düzenlemeleri yapmalıyım?” & Masal okuma sayfası \\
+\relax ChatGPT  & CSS düzenlemelerinde yardım almak için. &“Masal kartlarındaki görselleri ve metinleri nasıl hizalayabilirim? Telefon ekranında alt alta görünmelerini nasıl sağlayabilirim?” & Masal kartları ve mobil görünüm. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Anladığım ve Kendim Yaptığım Kısımlar}
+Proje sürecinde yapay zekâdan özellikle anlamadığım kodların işlevlerini öğrenmek ve karşılaştığım hatalara çözüm bulmak için yardım aldım. Aldığım önerileri doğrudan kullanmak yerine web sitemde deneyerek nasıl çalıştıklarını kontrol ettim ve gerektiğinde düzenlemeler yaptım. Renk paletini, yazı tiplerini, sayfa düzenini ve masal kartlarının görünümünü kendi tasarım tercihlerime göre belirledim. CSS kodlarında renk, yazı boyutu ve boşluk değerlerini değiştirerek tasarımı düzenledim; JavaScript ile oluşturulan masal seçme, sayfa geçişleri ve yazı boyutu ayarlarını tarayıcıda test ettim. Ayrıca görselleri Base64 biçiminde ekledikten sonra doğru görüntülenip görüntülenmediklerini kontrol ederek gerekli düzeltmeleri yaptım. Bu süreçte kodların hangi işlevleri yerine getirdiğini ve yaptığım değişikliklerin web sitesini nasıl etkilediğini daha iyi öğrendim.
+
+% ====================================================================
+\section{Haftalık Katkılar}
+% ====================================================================
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.7cm}%
+                    >{\raggedright\arraybackslash}p{6.4cm}%
+                    >{\centering\arraybackslash}p{6cm}@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Hafta}} & \textcolor{white}{\textbf{Yapılan çalışma}} & \textcolor{white}{\textbf{Görsel}} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Hafta}} & \textcolor{white}{\textbf{Yapılan çalışma}} & \textcolor{white}{\textbf{Görsel}} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{1. hafta}\newline 16.09.2026 &
+HTML kullanarak “WorldWideWeb” başlıklı bir sayfa oluşturdum. CSS ile arka plan ve yazı renklerini, yazı boyutlarını, boşlukları ve sayfa genişliğini düzenledim.\newline \textbf{Commit:}\katilimkutulari &
+\haftagorsel{hafta1b.png} \\
+\midrule
+\textbf{2. hafta}\newline 23.09.2026 &
+HTML kullanarak “WorldWideWeb” başlıklı bir sayfa oluşturdum. CSS ile arka plan ve yazı renklerini, yazı boyutlarını, boşlukları ve sayfa genişliğini düzenledim.\newline \textbf{Commit:} \katilimkutulari &
+\haftagorsel{hafta1.png} \\
+\midrule
+\textbf{3. hafta}\newline 30.09.2026 &
+HTML ve JavaScript kullanarak Gmail’i aynı veya yeni sekmede açan bağlantılar ve butonlar ile tıklandığında mesaj gösteren butonlar oluşturdum. Ayrıca “Kahve Kültürü ve Kahve Çeşitleri” konulu bir sayfa hazırlayarak görsel, liste, sayfa içi bağlantılar ve buton ekledim. CSS ile sayfanın renklerini, yazı boyutlarını, boşluklarını ve butonun üzerine gelindiğinde değişen rengini düzenledim.\newline \textbf{Commit:}\katilimkutulari &
+\haftagorsel{hafta3.png}\haftaek{hafta3b.png}\haftaek{hafta3c.png}\haftaek{hafta3d.png} \\
+\midrule
+\textbf{4. hafta}\newline 07.10.2026 &
+ HTML ve JavaScript kullanarak ad ve e-posta alanları boş bırakıldığında uyarı veren, doldurulduğunda ise kullanıcıya adıyla hoş geldin mesajı gösteren bir kayıt formu oluşturdum. Ayrıca artı ve eksi butonlarıyla bilet sayısını değiştiren bir sayaç ve tıklandığında sayfada “Biletiniz başarıyla alındı!” mesajını gösteren bir buton ekledim. Sayaç sayfasının arka plan rengini CSS ile açık mavi olarak düzenledim.\newline \textbf{Commit:} \katilimkutulari &
+\haftagorsel{hafta4.png}\haftaek{hafta4b.png}\haftaek{hafta4c.png} \\
+\midrule
+\textbf{5. hafta}\newline 14.10.2026 &
+HTML ve JavaScript kullanarak Netflix’i yeni sekmede açan bir bağlantı ve buton oluşturdum. Ayrıca aynı renkteki kalpleri bulmaya dayalı bir kart eşleştirme oyunu hazırladım; eşleşen kartların açık kalmasını, eşleşmeyenlerin ise kısa bir süre sonra kapanmasını sağladım. CSS ile kartların boyutlarını, renklerini ve köşe yuvarlaklıklarını düzenledim.\newline \textbf{Commit:}\katilimkutulari &
+\haftagorsel{hafta5.png}\haftaek{hafta5b.png} \\
+\midrule
+\textbf{6. hafta}\newline 20.10.2026 &
+HTML ve CSS kullanarak üst başlık, içerik ve alt bilgi bölümlerinden oluşan bir sayfa tasarladım. JavaScript ile butona her tıklandığında bir kutunun rengini turkuaz ve sarı arasında değiştiren bir özellik ekledim. Ayrıca İstanbul Medipol Üniversitesini tanıtan bir sayfa hazırlayarak menü, fakülteler ve kampüs yaşamı bölümlerini oluşturdum; renkleri, yazı tiplerini ve sayfa yerleşimini düzenledim.\newline \textbf{Commit:} \katilimkutulari &
+\haftagorsel{hafta6.png}\haftaek{hafta6b.png}\haftaek{hafta6c.png}\haftaek{hafta6d.png}\haftaek{hafta6e.png}\haftaek{hafta6f.png} \\
+\midrule
+\end{longtable}
+
+% ====================================================================
+\section{Test ve Değerlendirme}
+% ====================================================================
+
+\begin{center}
+\rowcolors{2}{acik}{white}
+\begin{tabular}{@{}p{6cm}p{3.4cm}p{3.4cm}@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Özellik}} & \textcolor{white}{\textbf{Bilgisayar}} & \textcolor{white}{\textbf{Telefon}} \\
+\midrule
+\relax Ana sayfanın görüntülenmesi & Çalışıyor  & Çalışıyor \\
+\relax Masal kartlarının görüntülenmesi & Çalışıyor  & Çalışıyor  \\
+\relax Masalı Oku butonu & Çalışıyor  & Çalışıyor  \\
+\relax Önceki ve sonraki masala geçiş & Çalışıyor  & Çalışıyor  \\
+\relax Yazı boyutunu değiştirme & Çalışıyor  & Çalışıyor  \\
+\relax Görsellerin görüntülenmesi & Çalışıyor  & Çalışıyor  \\
+\relax Sayfa düzeninin ekran boyutuna uyumu & Çalışıyor  & Çalışıyor  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Denenen tarayıcılar:} Chrome, Edge, Safari 
+
+% ====================================================================
+\section{Sunum Videosu}
+% ====================================================================
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\textbf{Video süresi:} & 17:15 \quad \\
+\textbf{Görünürlük:} & Listelenmemiş \\
+\textbf{Bağlantı:} & https://youtu.be/DT1dADmtXfw \\
+\end{tabular}
+\end{center}
+
+\subsection{Video Kontrol Listesi}
+\begin{itemize}[label={}]
+  \item $\boxtimes$  Süre 12--18 dakika aralığında.
+  \item $\boxtimes$ Sunum boyunca kameram açık, yüzüm görünüyor.
+  \item $\boxtimes$ Görünürlük \textbf{Listelenmemiş} (ya da Herkese açık); \textbf{Özel} değil.
+  \item $\boxtimes$ Bağlantıyı gizli pencerede açtım, video oynuyor.
+  \item $\boxtimes$ YouTube videoyu işlemeyi bitirdi.
+  \item $\boxtimes$ Videoyu baştan sona izledim; ses tüm sunumda var.
+  \item $\boxtimes$ Kapaktaki bağlantı ile bu bölümdeki bağlantı aynı.
+\end{itemize}
+
+% ====================================================================
+\section{Sonuç ve Kendi Değerlendirmem}
+% ====================================================================
+
+Bu projede HTML, CSS ve JavaScript kullanarak bir web sitesinin nasıl oluşturulduğunu ve bu kodların birbiriyle nasıl çalıştığını daha iyi öğrendim. HTML ile sayfanın içeriğini oluştururken CSS ile renkleri, yazı tiplerini ve sayfa düzenini değiştirmeyi öğrendim. JavaScript kullanarak masal seçme, masallar arasında geçiş yapma ve yazı boyutunu değiştirme gibi özelliklerin nasıl çalıştığını gördüm. Projede en çok JavaScript kodlarında karşılaştığım hataları çözmekte ve görselleri tek HTML dosyasına eklemekte zorlandım. Bu sorunları çözmek için yapay zekâdan yardım aldım, önerilen kodları inceleyerek gerekli düzenlemeleri yaptım ve tarayıcıda test ettim. Ayrıca web sitesinin telefon ve bilgisayar ekranlarında düzgün görünmesi için farklı ekran boyutlarında kontroller yaptım. İleride projeyi geliştirirsem masalları konularına göre filtreleme ve kullanıcıların istedikleri masalı daha kolay bulabilmesi için arama özelliği eklemek isterim.
+
+% ====================================================================
+\section{Kaynakça}
+% ====================================================================
+
+\begin{thebibliography}{9}
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Keloğlan ve Altın Bülbül Masalı}. https://www.kulturportali.gov.tr/portal/keloglanvealtinbulbulmasali ,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Korkak Adam ve Devler}. https://www.kulturportali.gov.tr/portal/korkakadamvedevler ,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Dört Öğüt}. https://www.kulturportali.gov.tr/portal/dortogut-1 ,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Kurnaz Kurt Masalı}. https://www.kulturportali.gov.tr/portal/kurnazkurtmasali,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Öksüz Kız}. https://www.kulturportali.gov.tr/portal/oksuzkiz ,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Hüsnü Yusuf}.https://www.kulturportali.gov.tr/portal/husnuyusuf ,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{İncili Çadır}. https://www.kulturportali.gov.tr/portal/incilicadir ,erişim tarihi: 02.11.2026.
+\bibitem{k2} Türkiye Kültür Portalı. \emph{Kırk Dost Masalı}. https://www.kulturportali.gov.tr/portal/kirkdostmasali ,erişim tarihi: 02.11.2026.
+\end{thebibliography}
+
+% ====================================================================
+\appendix
+\section{Teslim Kontrol Listesi}
+% ====================================================================
+\begin{itemize}[label={}]
+  \item $\boxtimes$ MEBİS'e \textbf{yalnızca bu raporun PDF'ini} yükleyeceğim. ZIP ve HTML dosyası yüklemeyeceğim.
+  \item $\boxtimes$ PDF dosya adı \texttt{OgrenciNo\_AdSoyad\_vize.pdf} biçiminde.
+  \item $\boxtimes$ Kapaktaki GitHub ve YouTube bağlantıları doğru; PDF'te tıklayıp denedim.
+  \item $\boxtimes$GitHub deposunda web sayfası (tek \texttt{.html}), rapor PDF'i, \texttt{.tex} kaynakları ve \texttt{README.md} var.
+  \item $\boxtimes$ GitHub deposu \textbf{herkese açık} (ya da öğretim üyesine erişim verdim).
+  \item $\boxtimes$ Çalışmamın son hâli teslim saatinden \textbf{önce} depoya gönderildi (sonraki commitler değerlendirilmez).
+  \item $\boxtimes$Sayfa içsel CSS ve içsel JavaScript kullanıyor, harici dosya gerektirmiyor.
+  \item $\boxtimes$Hazır taslak kullanmadım; yapay zekâ kullandıysam Bölüm 5'i doldurdum.
+  \item $\boxtimes$ Çalışmanın mantığını sunumda anlatabilirim.
+\end{itemize}
+
+\end{document}
